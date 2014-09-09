@@ -29,7 +29,7 @@ int genKey( int key )
     return key * randInt;
 }
 
-int xorStrings( char *message, int key, int length)
+int* xorStrings( char *message, int key, int length)
 {
     int ar[length];
     int i = 0;
@@ -40,6 +40,18 @@ int xorStrings( char *message, int key, int length)
 
     return *ar;
 }
+
+char* decryptString( int *ar, int key, int length )
+{
+    char mess[length];
+    int i = 0;
+    for( i = 0; i < length; i++ )
+    {
+        message[i] = ar[i] ^ key;
+    }
+
+    return *mess;
+
 
 
 #endif
