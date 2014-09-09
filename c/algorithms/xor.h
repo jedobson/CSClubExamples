@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 int genKey( int key )
 {
@@ -35,10 +36,10 @@ int* xorStrings( char *message, int key, int length)
     int i = 0;
     for( i = 0; i < length; i++)
     {
-        ar[i] = message[i] ^ key;
+        ar[i] = (int)(message[i] ^ key);
     }
 
-    return *ar;
+    return ar;
 }
 
 char* decryptString( int *ar, int key, int length )
@@ -47,10 +48,11 @@ char* decryptString( int *ar, int key, int length )
     int i = 0;
     for( i = 0; i < length; i++ )
     {
-        message[i] = ar[i] ^ key;
+        mess[i] = (char)(ar[i] ^ key);
     }
 
-    return *mess;
+    return mess;
+}
 
 
 
