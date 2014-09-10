@@ -27,7 +27,7 @@ int* genKey( int key )
     }
     close( randData );
 */
-    int ar_key[key];
+    int *ar_key = malloc( sizeof( ar_key ) );
     int i = 0;
     for( i = 0; i < key; i++ )
     {
@@ -39,18 +39,16 @@ int* genKey( int key )
     return ar_key;
 }
 
-char* xorStrings( char *message, int *key, int length )
+char* xorStrings( char *message, int *key )
 {
-    char ar[length];
+    char *ar = malloc( sizeof( ar ) );
     int i = 0;
-    for( i = 0; i < length; i++)
+    for( i = 0; message[i] != '\0'; i++)
     {
         ar[i] = message[i] ^ key[i];
         printf("mess: %x\n", message[i]);
         printf("key: %d\n", key[i]);
     }
-
-
     return ar;
 }
 
