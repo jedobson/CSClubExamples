@@ -22,27 +22,22 @@ int main()
     }
 
     _ar_i = 0;
-
     key = genKey( _ar_size );
 
-    printf("key: %d\n", key[0]);
 
     _ar_en = xorStrings( _ar, key, _ar_size);
-
-    for( _ar_i = 0; _ar_i < _ar_size; _ar_i++)
+    for( _ar_i = 0; _ar_i < _ar_size; _ar_i++ )
     {
-        printf( "EN: %x", _ar_en[_ar_i] );
+        printf( "EN: %x\n", _ar_en[_ar_i] ); 
     }
-
-    printf("\n");
 
     _ar_i = 0;
 
-    _ar_de = decryptString( _ar_en, key, _ar_size);
+    _ar_de = xorStrings( _ar_en, key, _ar_size);
     
     for( _ar_i = 0; _ar_i < _ar_size; _ar_i++ )
     {
-        printf( "DE: %x\n", _ar_de[_ar_i] );
+        printf( "DE(%x): %c\n", _ar_de[_ar_i], _ar_de[_ar_i] );
     }
 
     printf("done");
