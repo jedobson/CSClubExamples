@@ -11,9 +11,9 @@ int main()
     printf( "%d\n", _ar_size ); 
 
     char _ar[_ar_size];
-    //char *_ar_en;
-    //int *key;
-    //char *_ar_de;
+    char*  _ar_en;
+    int key;
+    char* _ar_de;
     
     for( _ar_i = 0; _ar_i < _ar_size; _ar_i++)
     {
@@ -22,10 +22,13 @@ int main()
     }
 
     _ar_i = 0;
-    int *key = genKey( _ar_size );
+    if( (key = genKey( _ar_size ) ) == -1 )
+    {
+        printf("failed to generate key, check /dev/random");
+        return 1;
+    }
 
-
-    char *_ar_en = xorStrings( _ar, key );
+    _ar_en = xorStrings( _ar, key );
     for( _ar_i = 0; _ar_i < _ar_size; _ar_i++ )
     {
         printf( "EN(%x): %c\n", _ar_en[_ar_i], _ar_en[_ar_i] ); 
@@ -34,7 +37,7 @@ int main()
 
     _ar_i = 0;
 
-    char *_ar_de = xorStrings( _ar_en, key );
+    _ar_de = decryptStrings( _ar_en, key );
 
     for( _ar_i = 0; _ar_i < _ar_size; _ar_i++ )
     {
@@ -42,10 +45,6 @@ int main()
     }
 
     printf("done");
-
-    free(_ar_en);
-    free(_ar_de);
-    free(key);
 
     return 0;
 }

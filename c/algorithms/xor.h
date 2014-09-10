@@ -5,10 +5,9 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-int* genKey( int key )
+int genKey( int key )
 {
     printf( "generating key\n" );
-/*
     int randData = open("/dev/random", O_RDONLY );
     int randInt;
     
@@ -20,36 +19,38 @@ int* genKey( int key )
         if( result < 0 )
         {
             printf( "error reading /dev/random\n");
-            return 1;
+            return -1;
         }
         randLength += result;
 
     }
     close( randData );
-*/
-    int *ar_key = malloc( sizeof( ar_key ) );
-    int i = 0;
-    for( i = 0; i < key; i++ )
-    {
-        ar_key[i] = 3;
-    }
-
-    printf("ar_key: %d\n", ar_key[0] );
+    int ar_key = key * randInt;
 
     return ar_key;
 }
 
-char* xorStrings( char *message, int *key )
+char* xorStrings( char *message, int key )
 {
-    char *ar = malloc( sizeof( ar ) );
+    printf("encrypting string\n");
     int i = 0;
     for( i = 0; message[i] != '\0'; i++)
     {
-        ar[i] = message[i] ^ key[i];
-        printf("mess: %x\n", message[i]);
-        printf("key: %d\n", key[i]);
+        message[i] = message[i] ^ key;
     }
-    return ar;
+    return message;
+}
+
+char* decryptStrings( char *mess, int key )
+{
+    printf("decrypting string\n");
+    int j = 0;
+    for(j = 0; mess[j] != '\0'; j++)
+    {
+        mess[j] = mess[j] ^ key;
+    }
+
+    return mess;
 }
 
 #endif
