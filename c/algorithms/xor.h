@@ -4,7 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+/* * * * * * * * * * * * * * * * *
+ * Basic XOR Cypher written in C *
+ * * * * Justin Dobson * * * * * *
+ * * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * * */
 
+
+/* Generates key to be used in the encryption/decryption *
+ * Process, takes in int(usually number of characters to *
+ * be encyrpted) and value from /dev/random *************/
 int genKey( int key )
 {
     printf( "generating key\n" );
@@ -29,6 +38,9 @@ int genKey( int key )
 
     return ar_key;
 }
+
+/* Decrypt/encrypt fuunctions, take string *
+ * and XOR with key for both * * * * * * * */
 
 char* xorStrings( char *message, int key )
 {

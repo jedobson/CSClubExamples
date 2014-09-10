@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Test for XOR Cypher */
+
 int main()
 {
     int _ar_size;
