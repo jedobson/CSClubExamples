@@ -20,7 +20,6 @@ int primality( int randVal )
 
 int factorial( int fact )
 {
-    
 
     if( fact <= 1 )
     {
@@ -30,7 +29,6 @@ int factorial( int fact )
     {
         return fact * factorial(fact-1);
     }
-    
 
 }
 
