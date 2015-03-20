@@ -1,16 +1,15 @@
 #ifndef _LINKEDLIST__H_
 #define _LINKEDLIST__H_
 
-#include <stdio.h>
 
 typedef struct node *link;
-
 struct node
 {
-    void* item;
+    int item;
     link next;
 }
 node;
+
 
 struct list
 {
@@ -30,28 +29,65 @@ void setTail(link t)
     list.tail = t;
 }
 
-void initList()
+void initList(link h, link t)
 {
-    link h = list.head;
-    link t = list.tail;
+    list.head = h;
+    list.tail = t;
 
     h->next = t;
+    list.count = 1;
 }
 
-link genNode(void *itemN)
+link genNode(int itemN)
 {
     link nn = malloc( sizeof *nn);
 
     nn->item = itemN;
+    nn->next = NULL;
 
     return nn;
 }
 
-void insertNode(link t, link x, link y)
+//insert node at nth position in the list
+int insertNode(link i, int n)
 {
-    t->next = x;
-    x->next = y;
+    link current = NULL;
+    int curCount = 1;
+    int r = 0;
+
+    if(n == 0)
+    {
+	      i->next = list.head;
+	      list.head = i;
+	      r = 1;
+    }
+    else 
+    {
+	      current = list.head;
+	      for(curCount; curCount < n; curCount++)
+	      {
+	         /* if( current->next->next == NULL )
+	          {
+		            r = -1;
+	          }*/
+		
+	          current = current->next;
+	      } 
+            
+	      i->next = current->next;
+	      current->next = i;
+
+	      if( i->next == NULL)
+	      {
+	          setTail( i );
+	      }
+
+	      r = 1;
+    }
+	    	
     list.count++;
+
+    return r;
 }
 
 void removeNode(link t, link x)
@@ -78,23 +114,30 @@ void removeHead(link t)
 void iterateList()
 {
     link i = list.head;
-    while (i->next)
+    while (i != NULL)
     {
         printf("%d\n", i->item);
         i = i->next;
     }
 }
 
+void reverseList(link h)
+{
+
+  link prev = NULL;
+  link current = h;
+  link n;
+
+  while (current != NULL)
+  {
+      n = current->next; 
+      current->next = prev;  
+      prev = current;
+      current = n;
+  }
+
+  list.head = prev;
+
+}
+
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
