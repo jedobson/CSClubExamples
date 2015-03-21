@@ -7,11 +7,11 @@ int kmp( char s[], char w[] )
     int i = 0;
     int t[];
 
-    while( m + i < strLength( s ) )
+    while( m + i < strlen( s ) )
     {
         if( w[i] == s[m+i] )
         {
-            if( i == strLength( w ) - 1)
+            if( i == strlen( w ) - 1)
             {
                 return m;
             }
@@ -32,9 +32,9 @@ int kmp( char s[], char w[] )
 
         }
     }
-    return strLength(s);
+    return strlen(s);
 }
 
-//TODO write the kmp_table, maybe make the int t[] global?
+//TODO write the kmp_table
         
 #endif
