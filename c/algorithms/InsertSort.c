@@ -1,8 +1,4 @@
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <assert.h>
 void insertionSort(int ar_size, int *  ar) {
 
           int j = 0;

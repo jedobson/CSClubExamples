@@ -29,6 +29,8 @@ void setTail(link t)
     list.tail = t;
 }
 
+
+/* initializes list with a head and optionally a tail */
 void initList(link h, link t)
 {
     list.head = h;
@@ -38,6 +40,7 @@ void initList(link h, link t)
     list.count = 1;
 }
 
+/* generates nodes by allocating memory for them */
 link genNode(int itemN)
 {
     link nn = malloc( sizeof *nn);
@@ -48,7 +51,7 @@ link genNode(int itemN)
     return nn;
 }
 
-//insert node at nth position in the list
+/* insert node at nth position in the list */
 int insertNode(link i, int n)
 {
     link current = NULL;
@@ -90,6 +93,7 @@ int insertNode(link i, int n)
     return r;
 }
 
+/* removes node, requires previous node */
 void removeNode(link t, link x)
 {
     if (x->next)
@@ -111,6 +115,7 @@ void removeHead(link t)
     free(t);
 }
 
+/*allows for iteration through list of integers */
 void iterateList()
 {
     link i = list.head;
@@ -121,6 +126,7 @@ void iterateList()
     }
 }
 
+/* Allows list to be reversed */
 void reverseList(link h)
 {
 
