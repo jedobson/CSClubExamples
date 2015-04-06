@@ -1,5 +1,5 @@
-#ifndef _BSTREE__H
-#define _BSTREE__H
+#include <stdio.h>
+#include <stdlib.h>
 
 
 typedef struct node *link;
@@ -17,7 +17,7 @@ struct bstree
 {
     link root;
 }
-bstree
+bstree;
 
 
 link genNode( int newitem )
@@ -30,32 +30,32 @@ link genNode( int newitem )
     newN->key = newitem;
 }
 
-void insert( link newN )
+void insert( link r, link newN )
 {
 
-    if( root->key > newN->key )
+    if( bstree.root->key > newN->key )
     {
-        if ( !root->left )
+        if ( !bstree.root->left )
         {
-            root->left = newN;
-            newN->parent = root;
+            bstree.root->left = newN;
+            newN->parent = bstree.root;
         }
         else 
         {
-            insert( root->left, newN );
+            insert( bstree.root->left, newN );
         }
     }
 
-    else if( root->key < newN->key )
+    else if( bstree.root->key < newN->key )
     {
-        if( !root->right )
+        if( !bstree.root->right )
         {
-            root->right = newN;
-            newN->parent = root;
+            bstree.root->right = newN;
+            newN->parent = bstree.root;
         }
         else
         {
-            insert( root->right, newN );
+            insert( bstree.root->right, newN );
         }
     }
 
@@ -69,7 +69,7 @@ link search( int key, link x )
     {
         return x;
     }
-    else if( key < x->item )
+    else if( key < x->key )
     {
         r = x->left;   
     }
@@ -147,7 +147,9 @@ int removeNode( int k )
 }
 
 
+int main()
+{
+    return 1;
+}
 
 
-
-#endif
